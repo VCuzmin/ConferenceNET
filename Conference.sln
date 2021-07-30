@@ -5,9 +5,32 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BCE2072B-FE79-4C96-AA47-969725CF0B55}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{9E88E583-D987-409A-9F19-448F138B5B69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conference.Api", "src\Conference.Api\Conference.Api.csproj", "{953AEE55-9B73-4815-BD96-70C9A3A8BF63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{69366527-5008-47BC-9835-43C784E2FBC5}"
+	ProjectSection(SolutionItems) = preProject
+		dependencies.props = dependencies.props
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{953AEE55-9B73-4815-BD96-70C9A3A8BF63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{953AEE55-9B73-4815-BD96-70C9A3A8BF63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{953AEE55-9B73-4815-BD96-70C9A3A8BF63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{953AEE55-9B73-4815-BD96-70C9A3A8BF63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{953AEE55-9B73-4815-BD96-70C9A3A8BF63} = {BCE2072B-FE79-4C96-AA47-969725CF0B55}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D8973A7E-9959-4C32-A28E-02EAC5DAAD09}
