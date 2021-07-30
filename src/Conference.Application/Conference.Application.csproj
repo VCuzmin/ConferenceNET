@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="7.5.2" />
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="NBB.Application.DataContracts" Version="$(NBBPackagesVersion)" />
+    <PackageReference Include="NBB.Messaging.Abstractions" Version="$(NBBPackagesVersion)" />
+  </ItemGroup>
+</Project>

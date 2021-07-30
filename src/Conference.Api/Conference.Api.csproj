@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -28,6 +28,11 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.2-dev-00777" />
     <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="$(SerilogSinksMSSqlServerPackageVersion)" />
     <PackageReference Include="NBB.Correlation.Serilog.SqlServer" Version="$(NBBPackagesVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Conference,Data\Conference,Data.csproj" />
+    <ProjectReference Include="..\Conference.Application\Conference.Application.csproj" />
   </ItemGroup>
 
 

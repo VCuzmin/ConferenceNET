@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Conference_Data</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="EntityTypeConfiguration\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="EFCore.BulkExtensions" Version="2.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="$(MicrosoftExtensionsPackagesVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(MicrosoftEntityFrameworkPackagesVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="$(MicrosoftEntityFrameworkPackagesVersion)" />
+    <PackageReference Include="NBB.Data.EntityFramework" Version="$(NBBPackagesVersion)" />
+    <PackageReference Include="NBB.Data.EventSourcing" Version="$(NBBPackagesVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Conference.Domain\Conference.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
