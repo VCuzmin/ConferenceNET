@@ -29,7 +29,7 @@ namespace Conference.Api
         {
             services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
-            //services.AddConferencesDataAccess();
+            services.AddConferencesDataAccess();
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

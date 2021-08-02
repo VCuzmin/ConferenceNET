@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
+    <PackageReference Include="NBB.Domain" Version="$(NBBPackagesVersion)" />
+    <PackageReference Include="NBB.Data.Abstractions" Version="$(NBBPackagesVersion)" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftExtensionsPackagesVersion)" />
   </ItemGroup>
+
 
 </Project>
