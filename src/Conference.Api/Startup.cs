@@ -1,7 +1,9 @@
 ﻿using Conference.Api.Swagger;
-using Conference_Data;
+using Conference.Application.Queries;
+using Conference.Data;
 using FluentValidation;
 using Hellang.Middleware.ProblemDetails;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -28,7 +30,7 @@ namespace Conference.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-
+            services.AddMediatR(new[] { typeof(GetSuggestions).Assembly });
             services.AddConferencesDataAccess();
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();

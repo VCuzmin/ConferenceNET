@@ -1,11 +1,12 @@
-﻿using Conference.Domain.Repositories;
+﻿using Conference.Data.Repositories;
+using Conference.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NBB.Data.EntityFramework;
 using NBB.Data.EventSourcing;
 
-namespace Conference_Data
+namespace Conference.Data
 {
     public static class DependencyInjectionExtensions
     {
@@ -27,8 +28,7 @@ namespace Conference_Data
                             .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
                     });
 
-            services.AddScoped<IConferenceRepository, IConferenceRepository>();
+            services.AddScoped<IConferenceRepository, ConferenceRepository>();
         }
-
     }
 }

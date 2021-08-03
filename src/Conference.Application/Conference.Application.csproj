@@ -10,4 +10,8 @@
     <PackageReference Include="NBB.Application.DataContracts" Version="$(NBBPackagesVersion)" />
     <PackageReference Include="NBB.Messaging.Abstractions" Version="$(NBBPackagesVersion)" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Conference.Domain\Conference.Domain.csproj" />
+  </ItemGroup>
 </Project>
