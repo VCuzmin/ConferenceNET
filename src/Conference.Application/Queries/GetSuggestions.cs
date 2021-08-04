@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Conference.Domain.Repositories;
+﻿using Conference.Domain.Repositories;
 using MediatR;
 using NBB.Application.DataContracts;
 using System.Collections.Generic;
@@ -30,7 +29,24 @@ namespace Conference.Application.Queries
             public async Task<List<string>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var conferences = await _repository.GetConferences(request.ConferenceId, request.AttendeeEmail);
-                return conferences.Select(x => x.Conference.Name).ToList();
+                var attendeeEmails = conferences.Select(x => x.AttendeeEmail).ToArray();
+
+                var otherConferences = await _repository.GetConferences(attendeeEmails);
+
+                var listOfRecommendedConferences = otherConferences
+                    .Where(c => c.ConferenceId != request.ConferenceId)
+                    //.Select(c => c.ConferenceId)
+                    .ToList();
+
+                var ids = listOfRecommendedConferences.GroupBy(v => v.ConferenceId)
+                    .ToDictionary(x => x.Key, y => y.Count())
+                    .OrderByDescending(d => d.Value)
+                    .Take(3)
+                    .Select(keyValuePair => keyValuePair.Key)
+                    .ToArray();
+
+
+                return await _repository.GetConferences(ids);
             }
         }
     }
