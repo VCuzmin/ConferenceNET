@@ -18,7 +18,6 @@ namespace Conference.Application.Queries
 
         public class QueryHandler : IRequestHandler<Query, List<string>>
         {
-
             private readonly IConferenceRepository _repository;
 
             public QueryHandler(IConferenceRepository repository)
