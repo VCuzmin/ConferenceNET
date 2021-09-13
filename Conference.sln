@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BCE2072B-FE7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{9E88E583-D987-409A-9F19-448F138B5B69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conference.Api", "src\Conference.Api\Conference.Api.csproj", "{953AEE55-9B73-4815-BD96-70C9A3A8BF63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conference.Api", "src\Conference.Api\Conference.Api.csproj", "{953AEE55-9B73-4815-BD96-70C9A3A8BF63}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{69366527-5008-47BC-9835-43C784E2FBC5}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,19 +15,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution 
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conference,Data", "src\Conference,Data\Conference,Data.csproj", "{2CB37ACC-2EF9-4DBE-BD0E-D4F3C2AC0AC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conference,Data", "src\Conference,Data\Conference,Data.csproj", "{2CB37ACC-2EF9-4DBE-BD0E-D4F3C2AC0AC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conference.Application", "src\Conference.Application\Conference.Application.csproj", "{90700682-C675-4FEE-BDD7-D8D89CA8F516}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conference.Application", "src\Conference.Application\Conference.Application.csproj", "{90700682-C675-4FEE-BDD7-D8D89CA8F516}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conference.Domain", "src\Conference.Domain\Conference.Domain.csproj", "{1467DAFC-A6F0-4C63-944B-C776A6B6CBA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conference.Domain", "src\Conference.Domain\Conference.Domain.csproj", "{1467DAFC-A6F0-4C63-944B-C776A6B6CBA5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "domain", "domain", "{C4994AAC-3EE8-40BE-992C-F71F8842BBD1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infra", "infra", "{247C181E-1F9A-46FF-A29C-595022F82608}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "application", "application", "{14867F93-E65F-435B-B068-263AF0007B25}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{5EAD26E9-80DC-4D7C-BB13-157D07296A4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,10 +49,6 @@ Global
 		{1467DAFC-A6F0-4C63-944B-C776A6B6CBA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1467DAFC-A6F0-4C63-944B-C776A6B6CBA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1467DAFC-A6F0-4C63-944B-C776A6B6CBA5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5EAD26E9-80DC-4D7C-BB13-157D07296A4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5EAD26E9-80DC-4D7C-BB13-157D07296A4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5EAD26E9-80DC-4D7C-BB13-157D07296A4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5EAD26E9-80DC-4D7C-BB13-157D07296A4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,7 +61,6 @@ Global
 		{C4994AAC-3EE8-40BE-992C-F71F8842BBD1} = {BCE2072B-FE79-4C96-AA47-969725CF0B55}
 		{247C181E-1F9A-46FF-A29C-595022F82608} = {BCE2072B-FE79-4C96-AA47-969725CF0B55}
 		{14867F93-E65F-435B-B068-263AF0007B25} = {BCE2072B-FE79-4C96-AA47-969725CF0B55}
-		{5EAD26E9-80DC-4D7C-BB13-157D07296A4C} = {BCE2072B-FE79-4C96-AA47-969725CF0B55}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D8973A7E-9959-4C32-A28E-02EAC5DAAD09}
