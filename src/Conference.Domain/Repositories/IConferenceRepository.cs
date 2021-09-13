@@ -8,6 +8,6 @@ namespace Conference.Domain.Repositories
     {
         Task<List<ConferenceXAttendee>> GetConferences(int conferenceId, string atendeeEmail);
         Task<List<ConferenceXAttendee>> GetConferences(params string[] atendeeEmail);
-        Task<List<string>> GetConferences(params int[] ids);
+        Task<List<Entities.Conference>> GetConferences(params int[] ids);
     }
 }

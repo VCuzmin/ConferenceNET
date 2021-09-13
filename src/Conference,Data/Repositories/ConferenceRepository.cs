@@ -36,13 +36,13 @@ namespace Conference.Data.Repositories
             return conferences;
         }
 
-        public async Task<List<string>> GetConferences(params int[] ids)
+        public async Task<List<Domain.Entities.Conference>> GetConferences(params int[] ids)
         {
             var conferences = await _dbContext.Conferences
                 .Where(c => ids.Contains(c.Id))
                 .ToListAsync();
 
-            return conferences.Select(c => c.Name).ToList();
+            return conferences.ToList();
         }
     }
 }

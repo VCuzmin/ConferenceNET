@@ -10,13 +10,13 @@ namespace Conference.Application.Queries
 {
     public class GetSuggestions
     {
-        public class Query : Query<List<string>>
+        public class Query : Query<List<Domain.Entities.Conference>>
         {
             public string AttendeeEmail { get; set; }
             public int ConferenceId { get; set; }
         }
 
-        public class QueryHandler : IRequestHandler<Query, List<string>>
+        public class QueryHandler : IRequestHandler<Query, List<Domain.Entities.Conference>>
         {
             private readonly IConferenceRepository _repository;
 
@@ -25,7 +25,7 @@ namespace Conference.Application.Queries
                 _repository = repository;
             }
 
-            public async Task<List<string>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<List<Domain.Entities.Conference>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var conferences = await _repository.GetConferences(request.ConferenceId, request.AttendeeEmail);
                 var attendeeEmails = conferences.Select(x => x.AttendeeEmail).ToArray();
