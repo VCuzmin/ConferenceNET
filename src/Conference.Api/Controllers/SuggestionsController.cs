@@ -12,7 +12,7 @@ namespace Conference.Api.Controllers
 {
     [Route("api/suggestions")]
     [ApiController]
-    public class SuggestionsController: ControllerBase
+    public class SuggestionsController : ControllerBase
     {
         private readonly IMediator _mediator;
         private readonly IEventsBagAccessor _eventsBagAccessor;
@@ -36,8 +36,9 @@ namespace Conference.Api.Controllers
             await _mediator.Send(command);
 
             var @successEvent = _eventsBagAccessor.Events.OfType<ConferenceCreated>().FirstOrDefault();
+            var @errorEvent = _eventsBagAccessor.Events.OfType<RequestExecutionError<CreateConference>>().FirstOrDefault();
 
-            var returnVal = new SyncCommandResult<ConferenceCreated>(@successEvent, string.Empty);
+            var returnVal = new SyncCommandResult<ConferenceCreated>(@successEvent, @errorEvent?.Error?.Message);
             return returnVal;
 
         }
@@ -48,8 +49,9 @@ namespace Conference.Api.Controllers
             await _mediator.Send(command);
 
             var @successEvent = _eventsBagAccessor.Events.OfType<ConferenceUpdated>().FirstOrDefault();
+            var @errorEvent = _eventsBagAccessor.Events.OfType<RequestExecutionError<CreateConference>>().FirstOrDefault();
 
-            var returnVal = new SyncCommandResult<ConferenceUpdated>(@successEvent, string.Empty);
+            var returnVal = new SyncCommandResult<ConferenceUpdated>(@successEvent, @errorEvent?.Error?.Message);
             return returnVal;
 
         }
@@ -60,8 +62,9 @@ namespace Conference.Api.Controllers
             await _mediator.Send(command);
 
             var @successEvent = _eventsBagAccessor.Events.OfType<ConferenceDeleted>().FirstOrDefault();
+            var @errorEvent = _eventsBagAccessor.Events.OfType<RequestExecutionError<CreateConference>>().FirstOrDefault();
 
-            var returnVal = new SyncCommandResult<ConferenceDeleted>(@successEvent, string.Empty);
+            var returnVal = new SyncCommandResult<ConferenceDeleted>(@successEvent, @errorEvent?.Error?.Message);
             return returnVal;
 
         }
