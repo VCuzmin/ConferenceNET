@@ -15,6 +15,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Conference.Domain\Conference.Domain.csproj" />
-    <ProjectReference Include="..\Conference.PublishedLanguage\Conference.PublishedLanguage.csproj" />
   </ItemGroup>
 </Project>

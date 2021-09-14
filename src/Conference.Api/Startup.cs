@@ -1,9 +1,13 @@
-﻿using Conference.Api.Swagger;
+﻿using Conference.Api.Decorators;
+using Conference.Api.Extensions;
+using Conference.Api.Swagger;
 using Conference.Application.Queries;
 using Conference.Data;
+using Conference.Messaging;
 using FluentValidation;
 using Hellang.Middleware.ProblemDetails;
 using MediatR;
+using MediatR.Pipeline;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using NBB.Correlation.AspNet;
+using NBB.Messaging.Abstractions;
 using System;
 
 namespace Conference.Api
@@ -30,27 +35,51 @@ namespace Conference.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.InvalidModelStateResponseFactory = context =>
+                {
+                    var problemDetails = new ValidationProblemDetails(context.ModelState)
+                    {
+                        Instance = context.HttpContext.Request.Path,
+                        Status = StatusCodes.Status400BadRequest,
+                        Type = "https://asp.net/core",
+                        Detail = "Please refer to the errors property for additional details."
+                    };
+                    return new BadRequestObjectResult(problemDetails)
+                    {
+                        ContentTypes = { "application/problem+json", "application/problem+xml" }
+                    };
+                };
+            });
+
             services.AddMediatR(new[] { typeof(GetSuggestions).Assembly });
             services.AddConferencesDataAccess();
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+            services.TryAddSingleton<IMessageBusPublisher, ConsoleMessageBusPublisher>();
+            services.Decorate<IMessageBusPublisher, MessageBusPublisherEventsBagDecorator>();
+            services.AddEventsBag();
             services.AddSwagger();
 
+            // MediatR
+            services.Scan(scan => scan
+                .FromAssemblyOf<GetSuggestions>()
+                .AddClasses(classes => classes.AssignableTo<IValidator>())
+                .AsImplementedInterfaces()
+                .WithScopedLifetime());
+
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(RequestPreProcessorBehavior<,>));
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(RequestPostProcessorBehavior<,>));
             services.AddProblemDetails(ConfigureProblemDetails);
         }
 
-        private void ConfigureProblemDetails(ProblemDetailsOptions options)
+        private static void ConfigureProblemDetails(ProblemDetailsOptions options)
         {
-            options.IncludeExceptionDetails = context => true;
-            options.MapStatusCode = statusCode => new StatusCodeProblemDetails(statusCode);
-
-            // This will map NotImplementedException to the 501 Not Implemented status code.
-            options.Map<NotImplementedException>(ex =>
-                new ExceptionProblemDetails(ex, StatusCodes.Status501NotImplemented));
-
-            options.Map<ValidationException>(ex =>
-                new ExceptionProblemDetails(ex, StatusCodes.Status422UnprocessableEntity));
+            options.IncludeExceptionDetails = (context, exception) => true;
+            options.Map<NotImplementedException>(ex => new StatusCodeProblemDetails(StatusCodes.Status501NotImplemented));
+            options.Map<ValidationException>(ex => new StatusCodeProblemDetails(StatusCodes.Status422UnprocessableEntity));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,12 +102,14 @@ namespace Conference.Api
             app.UseCorrelation();
             app.UseAuthentication();
 
+            app.AddEventsBag();
+
             app.UseMvc();
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tasks Api");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Conference Api");
             });
         }
     }
