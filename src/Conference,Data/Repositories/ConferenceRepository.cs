@@ -19,7 +19,7 @@ namespace Conference.Data.Repositories
         public async Task<List<ConferenceXAttendee>> GetConferences(int conferenceId, string atendeeEmail)
         {
             var conferences = await _dbContext.ConferenceXAttendees
-                .Where(c => c.ConferenceId == conferenceId && c.AttendeeEmail != atendeeEmail && c.StatusId == Status.Attended.Id)
+                .Where(c => c.ConferenceId == conferenceId && c.AttendeeEmail != atendeeEmail && c.StatusId == Status.Joined.Id)
                 // .Include(x => x.Conference)
                 .ToListAsync();
 
@@ -29,7 +29,7 @@ namespace Conference.Data.Repositories
         public async Task<List<ConferenceXAttendee>> GetConferences(params string[] atendeeEmails)
         {
             var conferences = await _dbContext.ConferenceXAttendees
-                .Where(c => atendeeEmails.Contains(c.AttendeeEmail) && c.StatusId == Status.Attended.Id)
+                .Where(c => atendeeEmails.Contains(c.AttendeeEmail) && c.StatusId == Status.Joined.Id)
                 .Include(x => x.Conference)
                 .ToListAsync();
 
