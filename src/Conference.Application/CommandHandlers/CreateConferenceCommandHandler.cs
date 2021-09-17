@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Conference.Domain.Repositories;
-using Conference.PublishedLanguage.Commands;
+using Conference.Application.Commands;
 using Conference.PublishedLanguage.Events;
 using MediatR;
 using NBB.Messaging.Abstractions;

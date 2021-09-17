@@ -1,6 +1,6 @@
 ﻿using Conference.Api.Extensions;
 using Conference.Application.Queries;
-using Conference.PublishedLanguage.Commands;
+using Conference.Application.Commands;
 using Conference.PublishedLanguage.Events;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
