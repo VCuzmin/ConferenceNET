@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System;
 
-namespace Conference.PublishedLanguage.Commands
+namespace Conference.Application.Commands
 {
     public class DeleteConference : IRequest
     {

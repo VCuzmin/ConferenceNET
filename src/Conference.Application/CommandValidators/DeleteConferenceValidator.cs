@@ -1,5 +1,5 @@
 ﻿using Conference.Domain.Repositories;
-using Conference.PublishedLanguage.Commands;
+using Conference.Application.Commands;
 using FluentValidation;
 
 namespace Conference.Application.CommandValidators

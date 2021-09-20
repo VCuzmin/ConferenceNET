@@ -1,11 +1,10 @@
 ﻿using MediatR;
 using System;
 
-namespace Conference.PublishedLanguage.Commands
+namespace Conference.Application.Commands
 {
-    public class UpdateConference : IRequest
+    public class CreateConference: IRequest
     {
-        public int Id { get; set; }
         public string OrganizerEmail { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
