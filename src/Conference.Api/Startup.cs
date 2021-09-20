@@ -1,5 +1,6 @@
 ﻿using Conference.Api.Decorators;
 using Conference.Api.Extensions;
+using Conference.Api.MediatorPipeline;
 using Conference.Api.Swagger;
 using Conference.Application.Queries;
 using Conference.Data;
@@ -72,7 +73,7 @@ namespace Conference.Api
 
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(RequestPreProcessorBehavior<,>));
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(RequestPostProcessorBehavior<,>));
-            services.AddTransient(typeof(IRequestExceptionHandler<,,>), typeof(RequestExceptionHandler<,,>));
+            services.AddScoped(typeof(IRequestExceptionHandler<,,>), typeof(CustomRequestExceptionHandler<,,>));
             services.AddProblemDetails(ConfigureProblemDetails);
         }
 
